@@ -1,4 +1,4 @@
-## Meeting Coffee App
+## Ecommerce with Redux
 
 React project that provide a UI interface to Learn redux :).
 
