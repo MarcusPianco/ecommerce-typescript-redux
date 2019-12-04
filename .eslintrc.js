@@ -32,7 +32,7 @@ module.exports = {
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", '.d.ts']
       }
     },
     "react": {
@@ -43,7 +43,7 @@ module.exports = {
   rules: {
       'prettier/prettier': 'error',
       'react/jsx-filename-extension':[
-          'warn',{ extensions: ['jsx', '.js','ts', 'tsx']}
+          'warn',{ extensions: ['jsx', '.js','ts', 'tsx', '.d.ts']}
       ],
       'import/prefer-default-export': 'off',
       'jsx-a11y/control-has-associated-label': 'off'
