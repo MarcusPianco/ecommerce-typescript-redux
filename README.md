@@ -1,6 +1,6 @@
 ## Meeting Coffee App
 
-React project that provide a UI interface to meetings between NERDS :).
+React project that provide a UI interface to Learn redux :).
 
 ## Contributions
 
