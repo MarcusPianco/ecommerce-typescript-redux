@@ -45,6 +45,7 @@ module.exports = {
       'react/jsx-filename-extension':[
           'warn',{ extensions: ['jsx', '.js','ts', 'tsx']}
       ],
-      'import/prefer-default-export': 'off'
+      'import/prefer-default-export': 'off',
+      'jsx-a11y/control-has-associated-label': 'off'
   },
 };
