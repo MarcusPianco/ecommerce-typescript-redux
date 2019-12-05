@@ -28,37 +28,37 @@
     "products": [
         {
             "id": 1,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 179.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         },
         {
             "id": 2,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 139.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         },
         {
             "id": 3,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 219.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         },
         {
             "id": 5,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 139.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         },
         {
             "id": 6,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 219.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         },
         {
             "id": 4,
-            "title": "Pc Gamer foda",
+            "title": "PC Gamer",
             "price": 179.9,
             "image": "https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
         }
