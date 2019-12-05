@@ -9,13 +9,16 @@ import { formatPrice } from '../../util/format';
 import { IProduct } from '../../types';
 
 import { RootState } from '../../store/modules/rootReducer';
+import * as CartActions from '../../store/modules/cart/actions';
 
 const mapStateToProps = (state: RootState) => ({
     cart: state.cart.products,
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
+
 type Props = StateProps & DispatchProp;
+
 function Home(props: Props) {
     const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -31,10 +34,13 @@ function Home(props: Props) {
     }, []);
 
     function handleAddProduct(product: IProduct) {
-        props.dispatch({
-            type: 'ADD_TO_CART',
-            payload: product,
-        });
+        const { dispatch } = props;
+        dispatch(
+            CartActions.addProductToCart({
+                ...product,
+                priceFormatted: formatPrice(product.price),
+            })
+        );
     }
 
     return (

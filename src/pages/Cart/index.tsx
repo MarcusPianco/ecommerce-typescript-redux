@@ -4,70 +4,127 @@ import {
     MdAddCircleOutline,
     MdDelete,
 } from 'react-icons/md';
-import { Container, ProductTable, Total } from './styles';
 
-export default function Cart() {
+import { connect, DispatchProp } from 'react-redux';
+import ReturnType from 'typescript';
+import { Container, ProductTable, Total } from './styles';
+import { RootState } from '../../store/modules/rootReducer';
+import * as CartActions from '../../store/modules/cart/actions';
+import { IProduct } from '../../types';
+import { formatPrice } from '../../util/format';
+
+const mapStateToProps = (state: RootState) => ({
+    products: state.cart.products.map(product => ({
+        ...product,
+        subtotal: formatPrice(product.amount * product.price),
+    })),
+    total: formatPrice(
+        state.cart.products.reduce((total, product) => {
+            return total + product.price * product.amount;
+        }, 0)
+    ),
+});
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+type Props = StateProps & DispatchProp;
+
+function Cart(props: Props) {
+    const { products, dispatch, total } = props;
+
+    function incrementProduct(product: IProduct) {
+        dispatch(
+            CartActions.updateProductAmount(product.id, product.amount + 1)
+        );
+    }
+
+    function decrementProduct(product: IProduct) {
+        dispatch(
+            CartActions.updateProductAmount(product.id, product.amount - 1)
+        );
+    }
+
     return (
         <Container>
-            <ProductTable>
-                <thead>
-                    <tr>
-                        <th />
-                        <th>Produto</th>
-                        <th>QTDE</th>
-                        <th>Subtotal</th>
-                        <th />
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img
-                                src="https://images-na.ssl-images-amazon.com/images/I/41upM3HLafL.jpg"
-                                alt="PC gamer"
-                            />
-                        </td>
-                        <td>
-                            <strong>PC muito foda</strong>
-                            <span> R$:12.000</span>
-                        </td>
+            {products.map(product => (
+                <ProductTable>
+                    <thead>
+                        <tr>
+                            <th />
+                            <th>Produto</th>
+                            <th>QTDE</th>
+                            <th>Subtotal</th>
+                            <th />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src={product.image} alt="PC gamer" />
+                            </td>
+                            <td>
+                                <strong>{product.title}</strong>
+                                <span>{product.priceFormatted}</span>
+                            </td>
 
-                        <td>
-                            <div>
-                                {' '}
-                                <button type="button">
-                                    <MdRemoveCircleOutline
-                                        size={20}
-                                        color="#7159c2"
+                            <td>
+                                <div>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            decrementProduct(product)
+                                        }
+                                    >
+                                        <MdRemoveCircleOutline
+                                            size={20}
+                                            color="#7159c2"
+                                        />
+                                    </button>
+                                    <input
+                                        type="number"
+                                        readOnly
+                                        value={product.amount}
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            incrementProduct(product)
+                                        }
+                                    >
+                                        <MdAddCircleOutline
+                                            size={20}
+                                            color="#7159c2"
+                                        />
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <strong>{product.subtotal}</strong>
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        dispatch(
+                                            CartActions.removeToCart(product.id)
+                                        )
+                                    }
+                                >
+                                    <MdDelete size={20} color="#7159c1" />
                                 </button>
-                                <input type="number" readOnly value={2} />
-                                <button type="button">
-                                    <MdAddCircleOutline
-                                        size={20}
-                                        color="#7159c2"
-                                    />
-                                </button>
-                            </div>
-                        </td>
-                        <td>
-                            <strong>R$:12.000</strong>
-                        </td>
-                        <td>
-                            <button type="button">
-                                <MdDelete size={20} color="#7159c1" />
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </ProductTable>
+                            </td>
+                        </tr>
+                    </tbody>
+                </ProductTable>
+            ))}
             <footer>
                 <button type="button">Finalizar pedido</button>
                 <Total>
                     <span>Total</span>
-                    <strong>R$:12.000</strong>
+                    <strong>{total}</strong>
                 </Total>
             </footer>
         </Container>
     );
 }
+export default connect(mapStateToProps)(Cart);

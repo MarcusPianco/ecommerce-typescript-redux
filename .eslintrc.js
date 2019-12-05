@@ -14,6 +14,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+
   },
   parser: '@typescript-eslint/parser',
   parser: 'babel-eslint',
@@ -46,6 +47,7 @@ module.exports = {
           'warn',{ extensions: ['jsx', '.js','ts', 'tsx', '.d.ts']}
       ],
       'import/prefer-default-export': 'off',
+      'no-console': ['error',{allow: ['tron']}],
       'jsx-a11y/control-has-associated-label': 'off'
   },
 };

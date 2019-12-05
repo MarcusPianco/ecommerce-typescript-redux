@@ -16,5 +16,5 @@
         "jsx": "react"
     },
     "include": ["src"],
-    "files": ["./src/custom.d.ts"]
+    "files": ["src/types/custom.d.ts"]
 }
