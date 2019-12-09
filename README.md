@@ -3,7 +3,7 @@
 React project that provide a UI interface to Learn redux :).
 The relevance of these project is the exemple of the redux and typescript, was a very difficult to find a good structure to manager the state and consider the relationship between types.
 
-Please see the store folder and give me some feedback :)!! Thanks.
+Please see the store folder and give me some feedback :)!! Thanks.git push
 
 ## Technologies
 

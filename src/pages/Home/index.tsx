@@ -11,8 +11,15 @@ import { IProduct } from '../../types';
 import { RootState } from '../../store/modules/rootReducer';
 import * as CartActions from '../../store/modules/cart/actions';
 
+type amountProduct = { [key: number]: any };
+const amountObject: amountProduct = {};
 const mapStateToProps = (state: RootState) => ({
     cart: state.cart.products,
+    amount: state.cart.products.reduce((amount, currentValue) => {
+        // eslint-disable-next-line no-param-reassign
+        amount[currentValue.id] = currentValue.amount;
+        return amount;
+    }, amountObject),
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
@@ -56,6 +63,7 @@ function Home(props: Props) {
                     >
                         <div>
                             <MdAddShoppingCart size={16} color="#fff" />
+                            {props.amount[product.id] || 0}
                         </div>
                         <span>Adicionar ao Carrinho</span>
                     </button>
