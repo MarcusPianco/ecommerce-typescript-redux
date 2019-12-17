@@ -9,9 +9,9 @@ Please see the store folder and give me some feedback :)!! Thanks.git push
 
 -   1. NodeJS
 -   2. ReactJS
--   3. ypescript
+-   3. Typescript
 -   4. Redux
--   5. Styled Cmponents
+-   5. Styled Components
 -   6. Eslint
 
 ## Components
